@@ -6,7 +6,6 @@ def uppercase(s):
         if 97 <= ascii_val <= 122:
             # conv a may, se resta 32 al val actual, lo que da la letra en may
             uppercase_char = chr(ascii_val - 32)
-            print(uppercase_char, end='')
+            print("{}".format(uppercase_char), end='')
         else:
-            print(char, end='')
-    print()  # imprimir nueva línea
+            print("{}".formta(char), end='')
