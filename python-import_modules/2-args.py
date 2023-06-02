@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import sys
 
-arguments = sys.argv[1:]
-num_arguments = len(arguments)
+# arguments = sys.argv[1:]
+num_arguments = len(sys.argv[1:])
 
 if num_arguments == 0:
     print("{} arguments.".format(num_arguments), end='\n')
