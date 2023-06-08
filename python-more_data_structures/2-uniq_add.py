@@ -6,3 +6,5 @@ def uniq_add(my_list=[]):
             new_list.append(item)
     result = sum(new_list)
     return result
+
+# return (sum(set(my_list))
