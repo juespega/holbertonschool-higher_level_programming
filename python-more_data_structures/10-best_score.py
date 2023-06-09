@@ -3,7 +3,8 @@ def best_score(a_dictionary):
     if not a_dictionary:  # Si el diccionario está vacío
         return None
 
-    max_score = float("-inf")  # Inicializar la puntuación máxima con un valor muy pequeño
+    # Inicializar la puntuación máxima con un valor muy pequeño
+    max_score = float("-inf")
     best_key = None
 
     for key, value in a_dictionary.items():
