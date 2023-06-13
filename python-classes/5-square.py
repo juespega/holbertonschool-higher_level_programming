@@ -13,7 +13,9 @@ class Square:
     def size(self):
         return self.__size
 
-    """allows assigning a value to size and performs type and value validation"""
+    """allows assigning a value to size and performs type and
+    value validation"""
+
     @size.setter
     def size(self, value):
         if type(value) is not int:
@@ -28,7 +30,8 @@ class Square:
     def area(self):
         return self.__size * self.__size
 
-    """Public instance method that prints in stdout the square with the character #:"""
+    """Public instance method that prints in stdout the square with
+    the character #:"""
 
     def my_print(self):
         if self.__size == 0:
