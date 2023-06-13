@@ -3,19 +3,20 @@
 
 
 class Square:
+    """Square class definition and Instantiation with size optional size"""
 
     def __init__(self, size=0):
-        """Square class definition and Instantiation with size optional size"""
         self.size = size
 
+    """allows to get the value of size and returns self.__size"""
     @property
     def size(self):
-        """allows to get the value of size and returns self.__size"""
         return self.__size
+
+    """allows assigning a value to size and performs type and value validation"""
 
     @size.setter
     def size(self, value):
-        """allows assigning a value to size and performs type and value validation"""
         if type(value) is not int:
             raise TypeError("size must be an integer")
         elif value < 0:
@@ -23,6 +24,7 @@ class Square:
         else:
             self.__size = value
 
+    """Public instance method that returns the current square area"""
+
     def area(self):
-        """Public instance method that returns the current square area"""
         return self.__size * self.__size
