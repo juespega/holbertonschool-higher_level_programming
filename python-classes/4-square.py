@@ -14,6 +14,7 @@ class Square:
         return self.__size
 
     """allows assigning a value to size and performs type and value validation"""
+    
     @size.setter
     def size(self, value):
         if type(value) is not int:
