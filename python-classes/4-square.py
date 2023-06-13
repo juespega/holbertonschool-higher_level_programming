@@ -13,7 +13,8 @@ class Square:
     def size(self):
         return self.__size
 
-    """allows assigning a value to size and performs type and value validation"""
+    """allows assigning a value to size and performs type and value 
+    validation"""
 
     @size.setter
     def size(self, value):
