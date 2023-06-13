@@ -3,7 +3,8 @@
 
 
 class Square:
-    """Square class definition and Instantiation with optional siza and optional position"""
+    """Square class definition and Instantiation with optional siza and
+    optional position"""
 
     def __init__(self, size=0, position=(0, 0)):
         self.size = size
@@ -15,7 +16,8 @@ class Square:
     def size(self):
         return self.__size
 
-    """allows assigning a value to size and performs type and value validation"""
+    """allows assigning a value to size and performs type and
+    value validation"""
 
     @size.setter
     def size(self, value):
@@ -32,7 +34,8 @@ class Square:
     def position(self):
         return self.__position
 
-    """position must be a tuple of 2 positive integers, otherwise raise a TypeError"""
+    """position must be a tuple of 2 positive integers, otherwise
+    raise a TypeError"""
 
     @position.setter
     def position(self, value):
@@ -48,7 +51,8 @@ class Square:
     def area(self):
         return self.__size * self.__size
 
-    """Public instance method that prints in stdout the square with the character #:"""
+    """Public instance method that prints in stdout the square
+    with the character #:"""
 
     def my_print(self):
         if self.__size == 0:
