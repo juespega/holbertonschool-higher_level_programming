@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-
+Function that receives 2 integer parameters and returns the sum of the two.
 """
+
 
 def add_integer(a, b=98):
     """This function adds two integers.
