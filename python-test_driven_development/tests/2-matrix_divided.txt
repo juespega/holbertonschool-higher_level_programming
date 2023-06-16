@@ -11,7 +11,6 @@ First import ``matrix_divided`` from the ``2-matrix_divided`` module:
 
     >>> matrix = [[1, 2, 3],[4, 5, 6]]
     >>> matrix_2 = [[1, 2],[4, 5, 6]]
-    >>> matrix_3 = [[1, 2, "3"],[4, 5, 6]]
 
 Now test:
     Test 01: matrix divided by an integer
@@ -33,6 +32,11 @@ Now test:
     TypeError: Each row of the matrix must have the same size
 
     Test 05: matrix with data type not int and float
-    >>> matrix_divided(matrix_3, 3)
+    >>> matrix_divided(matrix, "3")
     Traceback (most recent call last):
-    TypeError: matrix must be a matrix (list of lists) of integers/floats
+    TypeError: div must be a number
+
+    Test 06: One matrix divide None
+    >>> matrix_divided(matrix, None)
+    Traceback (most recent call last):
+    TypeError: div must be a number
