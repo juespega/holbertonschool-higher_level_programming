@@ -5,7 +5,7 @@ function that prints My name is <first name> <last name>
 
 
 def say_my_name(first_name, last_name=""):
-    """This function adds two integers.
+    """This function prints My name is.
     Args:
         first_name (str): last_name (str):
     Returns:
