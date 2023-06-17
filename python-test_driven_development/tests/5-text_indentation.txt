@@ -1,0 +1,34 @@
+The ``5-text_indentation.py`` module
+============================
+Using ``text_indentation.py``
+---------------------
+This is a text file in reStructuredText format.
+It contains a test for the text_indentation function in the 5-text_indentation module.
+First import ``text_indentation`` from the ``5-text_indentation`` module:
+
+    Test 00 Open 5-text_indentation
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+
+ Now test:
+    Test 01: text passed
+    >>> text_indentation("Benito")
+    Benito
+
+
+    Test 02: integer arguments passed
+    >>> text_indentation(10)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    Test 03: zero arguments passed
+    >>> text_indentation()
+    Traceback (most recent call last):
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+    Test 04: detect line breaks passed
+    >>> text_indentation("World\n\nThere.")
+    World
+    <BLANKLINE>
+    There.
+    <BLANKLINE>   
