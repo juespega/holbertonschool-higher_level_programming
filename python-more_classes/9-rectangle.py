@@ -120,10 +120,10 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             return ""
-        rectangle_str = ""
-        for _ in range(self.height):
-            rectangle_str += str(self.print_symbol) * self.width + "\n"
-        return rectangle_str.rstrip("\n")
+        rectangle = str(self.print_symbol) * self.__width + "\n"
+        rectangle *= self.__height - 1
+        rectangle += str(self.print_symbol) * self.__width
+        return rectangle
 
     def __repr__(self):
         """
@@ -170,4 +170,14 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
+        """
+        Returns a new Rectangle instance with width == height == size.
+
+        Args:
+            cls (type): The class itself.
+            size (int): The size of the square.
+
+        Returns:
+            Rectangle: A new Rectangle instance representing a square.
+        """
         return cls(size, size)
