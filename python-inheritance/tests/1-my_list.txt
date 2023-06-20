@@ -1,0 +1,16 @@
+The ``1-my_list.py`` module
+============================
+Using ``my_list.py``
+---------------------
+This is a text file in reStructuredText format.
+It contains a test for the lookup function in the 1-my_list module.
+First import ``lookup`` from the ``1-my_list`` module:
+
+    Test 00 Open 1-my_list
+    >>> lookup = __import__('1-my_list').lookup
+    >>> my_list = [1, 4, 2, 3, 5]
+
+Now test:
+    Test 01: a list of integers
+    >>> lookup(my_list)
+    [1, 2, 3, 4, 5]
