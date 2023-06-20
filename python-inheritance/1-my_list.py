@@ -11,5 +11,5 @@ class MyList(list):
         Returns:
         None
         """
-        self.sort()
-        print(self)
+        sorted_list = sorted(self)
+        print(sorted_list)
