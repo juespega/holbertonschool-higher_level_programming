@@ -24,5 +24,5 @@ def append_write(filename="", text=""):
     """
 
     with open(filename, 'a', encoding='utf-8') as file:
-        num_characters = file.write(text)
-        return num_characters
+        num_characte = file.write(text)
+        return num_character
