@@ -81,7 +81,8 @@ class Rectangle(Base):
             # Raise TypeError if value is not an integer (3)
             raise TypeError("x must be an integer")
         if value < 0:
-            # Raise ValueError if value is not greater than or equal to 0 (3)
+            """Raise ValueError if value is not greater than or
+            equal to 0 (3)"""
             raise ValueError("x must be > 0")
         # Assign the validated value to the private attribute (3)
         self.__x = value
@@ -98,7 +99,8 @@ class Rectangle(Base):
             # Raise TypeError if value is not an integer (3)
             raise TypeError("y must be an integer")
         if value < 0:
-            # Raise ValueError if value is not greater than or equal to 0 (3)
+            """Raise ValueError if value is not greater than or
+            equal to 0 (3)"""
             raise ValueError("y must be > 0")
         # Assign the validated value to the private attribute (3)
         self.__y = value
