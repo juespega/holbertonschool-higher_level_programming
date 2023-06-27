@@ -35,14 +35,14 @@ class Rectangle(Base):
         # Call the y setter to validate and assign the value (3)
         self.y = y
 
-    # Getter for the "width" property (2)
     @property
     def width(self):
+        """Getter for the "width" property (2)"""
         return self.__width
 
-    # Setter for the "width" property (2)
     @width.setter
     def width(self, value):
+        """Setter for the "width" property (2)"""
         if not isinstance(value, int):
             # Raise TypeError if value is not an integer (3)
             raise TypeError("width must be an integer")
@@ -52,14 +52,14 @@ class Rectangle(Base):
         # Assign the validated value to the private attribute (3)
         self.__width = value
 
-    # Getter for the "height" property (2)
     @property
     def height(self):
+        """Getter for the "height" property (2)"""
         return self.__height
 
-    # Setter for the "height" property (2)
     @height.setter
     def height(self, value):
+        """Setter for the "height" property (2)"""
         if not isinstance(value, int):
             # Raise TypeError if value is not an integer (3)
             raise TypeError("height must be an integer")
@@ -69,14 +69,14 @@ class Rectangle(Base):
         # Assign the validated value to the private attribute (3)
         self.__height = value
 
-    # Getter for the "x" property (2)
     @property
     def x(self):
+        """Getter for the "x" property (2)"""
         return self.__x
 
-    # Setter for the "x" property (2)
     @x.setter
     def x(self, value):
+        """Setter for the "x" property (2)"""
         if not isinstance(value, int):
             # Raise TypeError if value is not an integer (3)
             raise TypeError("x must be an integer")
@@ -86,14 +86,14 @@ class Rectangle(Base):
         # Assign the validated value to the private attribute (3)
         self.__x = value
 
-    # Getter for the "y" property (2)
     @property
     def y(self):
+        """Getter for the "y" property (2)"""
         return self.__y
 
-    # Setter for the "y" property (2)
     @y.setter
     def y(self, value):
+        """Setter for the "y" property (2)"""
         if not isinstance(value, int):
             # Raise TypeError if value is not an integer (3)
             raise TypeError("y must be an integer")
