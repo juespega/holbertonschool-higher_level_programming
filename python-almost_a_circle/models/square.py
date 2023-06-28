@@ -8,7 +8,8 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
     """
-    This class represents a square and inherits from the Rectangle class.
+    This class represents a square and inherits from the
+    Rectangle class.
     """
 
     def __init__(self, size, x=0, y=0, id=None):
@@ -24,27 +25,6 @@ class Square(Rectangle):
             id (int, optional): The ID of the square. Defaults to None.
         """
         super().__init__(size, size, x, y, id)
-
-    @property
-    def size(self):
-        """
-        Getter for the size attribute.
-
-        Returns:
-            int: The size of the square.
-        """
-        return self.width
-
-    @size.setter
-    def size(self, value):
-        """
-        Setter for the size attribute.
-
-        Args:
-            value (int): The size value to set.
-        """
-        self.width = value
-        self.height = value
 
     def __str__(self):
         """
