@@ -37,73 +37,83 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Getter for the "width" property (2)"""
+        """
+        Getter method for the width attribute.
+        """
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Setter for the "width" property (2)"""
-        if not isinstance(value, int):
-            # Raise TypeError if value is not an integer (3)
+        """
+        Setter method for the width attribute.
+        """
+        if isinstance(value, int):
+            if value > 0:
+                self.__width = value
+            else:
+                raise ValueError("width must be > 0")
+        else:
             raise TypeError("width must be an integer")
-        if value <= 0:
-            # Raise ValueError if value is not greater than 0 (3)
-            raise ValueError("width must be > 0")
-        # Assign the validated value to the private attribute (3)
-        self.__width = value
 
     @property
     def height(self):
-        """Getter for the "height" property (2)"""
+        """
+        Getter method for the height attribute.
+        """
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Setter for the "height" property (2)"""
-        if not isinstance(value, int):
-            # Raise TypeError if value is not an integer (3)
+        """
+        Setter method for the height attribute.
+        """
+        if isinstance(value, int):
+            if value > 0:
+                self.__height = value
+            else:
+                raise ValueError("height must be > 0")
+        else:
             raise TypeError("height must be an integer")
-        if value <= 0:
-            # Raise ValueError if value is not greater than 0 (3)
-            raise ValueError("height must be > 0")
-        # Assign the validated value to the private attribute (3)
-        self.__height = value
 
     @property
     def x(self):
-        """Getter for the "x" property (2)"""
+        """
+        Getter method for the x-coordinate attribute.
+        """
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Setter for the "x" property (2)"""
-        if not isinstance(value, int):
-            # Raise TypeError if value is not an integer (3)
+        """
+        Setter method for the x-coordinate attribute.
+        """
+        if isinstance(value, int):
+            if value >= 0:
+                self.__x = value
+            else:
+                raise ValueError("x must be >= 0")
+        else:
             raise TypeError("x must be an integer")
-        if value < 0:
-            """Raise ValueError if value is not greater than or
-            equal to 0 (3)"""
-            raise ValueError("x must be > 0")
-        # Assign the validated value to the private attribute (3)
-        self.__x = value
 
     @property
     def y(self):
-        """Getter for the "y" property (2)"""
+        """
+        Getter method for the y-coordinate attribute.
+        """
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Setter for the "y" property (2)"""
-        if not isinstance(value, int):
-            # Raise TypeError if value is not an integer (3)
+        """
+        Setter method for the y-coordinate attribute.
+        """
+        if isinstance(value, int):
+            if value >= 0:
+                self.__y = value
+            else:
+                raise ValueError("y must be >= 0")
+        else:
             raise TypeError("y must be an integer")
-        if value < 0:
-            """Raise ValueError if value is not greater than or
-            equal to 0 (3)"""
-            raise ValueError("y must be > 0")
-        # Assign the validated value to the private attribute (3)
-        self.__y = value
 
     def area(self):
         """Calculate and return the area of the rectangle. (4)
