@@ -20,13 +20,12 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rectangle.x, 3)
         self.assertEqual(rectangle.y, 0)
 
-    # def test_rectangle_with_width_height_x_and_y(self):
-    #     rectangle = Rectangle(1, 2, 3, 4)
-    #     self.assertEqual(rectangle.width, 1)
-    #     self.assertEqual(rectangle.height, 2)
-    #     self.assertEqual(rectangle.x, 3)
-    #     self.assertEqual(rectangle.y, 4)
-    #     self.assertEqual(rectangle.id, None)
+    def test_rectangle_with_width_height_x_and_y(self):
+        rectangle = Rectangle(1, 2, 3, 4)
+        self.assertEqual(rectangle.width, 1)
+        self.assertEqual(rectangle.height, 2)
+        self.assertEqual(rectangle.x, 3)
+        self.assertEqual(rectangle.y, 4)
 
     # def test_rectangle_with_invalid_width(self):
     #     with self.assertRaises(ValueError):
