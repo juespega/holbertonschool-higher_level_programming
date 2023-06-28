@@ -2,6 +2,7 @@
 """
 Crate a base class.
 """
+import json
 
 
 class Base:
@@ -23,3 +24,19 @@ class Base:
             Base.__nb_objects += 1
             # Assign the current counter value to the "id" instance variable
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """
+        Returns the JSON string representation of a list of dictionaries.
+
+        Args:
+            list_dictionaries (list): The list of dictionaries to
+            convert to JSON.
+
+        Returns:
+            str: The JSON string representation of the list of dictionaries.
+        """
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        return json.dumps(list_dictionaries)
