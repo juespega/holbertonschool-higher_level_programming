@@ -104,3 +104,10 @@ class Rectangle(Base):
             raise ValueError("y must be > 0")
         # Assign the validated value to the private attribute (3)
         self.__y = value
+
+    def area(self):
+        """Calculate and return the area of the rectangle. (4)
+
+        Returns:
+            The area of the rectangle."""
+        return self.__height * self.__width
