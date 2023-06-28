@@ -37,9 +37,10 @@ class TestBase(unittest.TestCase):
         # The result should be a JSON string with the dictionary provided
         self.assertEqual(result, '[{"id": 12}]')
 
-    # def test_to_json_string_single_dict_as_string(self):
-    #     result = Base.to_json_string([{'id': 12}], returning_string=True)
-    #     self.assertEqual(result, '[{"id": 12}]')  # El resultado debe ser una cadena JSON con el diccionario proporcionado
+    def test_to_json_string_single_dict_as_string(self):
+        result = Base.to_json_string([{'id': 12}], returning_string=True)
+        # The result should be a JSON string with the dictionary provided
+        self.assertEqual(result, '[{"id": 12}]')
 
     # def test_from_json_string_none(self):
     #     result = Base.from_json_string(None)
