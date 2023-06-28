@@ -114,10 +114,13 @@ class Rectangle(Base):
 
     def display(self):
         """
-        Print the Rectangle instance with the character '#' (5)
+        Print the Rectangle instance with the character '#' (5),
+        accounting for x and y offsets (6)
         """
+        for _ in range(self.y):
+            print()
         for _ in range(self.height):
-            print('#' * self.width)
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """
