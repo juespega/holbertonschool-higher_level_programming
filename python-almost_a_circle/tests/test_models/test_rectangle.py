@@ -90,13 +90,13 @@ class TestRectangle(unittest.TestCase):
         expected_output = "[Rectangle] (5) 3/4 - 1/2"
         self.assertEqual(string_representation, expected_output)
 
-    # def test_display_without_x_and_y(self):
-    #     """
-    #     Test the display() method of Rectangle without x and y offsets.
-    #     """
-    #     rectangle = Rectangle(2, 3)
-    #     expected_output = "##\n##\n##\n"
-    #     self.assertEqual(rectangle.display(), expected_output)
+    def test_display_without_x_and_y(self):
+        """
+        Test the display() method of Rectangle without x and y offsets.
+        """
+        rectangle = Rectangle(2, 3)
+        expected_output = "##\n##\n##\n"
+        self.assertEqual(rectangle.display(), expected_output)
 
     # def test_display_without_y(self):
     #     """
@@ -163,7 +163,70 @@ class TestRectangle(unittest.TestCase):
     #     Test the update() method of Rectangle with id, width, and height parameters.
     #     """
     #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(6, 7,
+    #     rectangle.update(6, 7, 8)
+    #     self.assertEqual(rectangle.id, 6)
+    #     self.assertEqual(rectangle.width, 7)
+    #     self.assertEqual(rectangle.height, 8)
+    #     self.assertEqual(rectangle.x, 3)
+    #     self.assertEqual(rectangle.y, 4)
+
+    # def test_update_method_with_id_width_height_x_and_y(self):
+    #     """
+    #     Test the update() method of Rectangle with id, width, height, x, and y parameters.
+    #     """
+    #     rectangle = Rectangle(1, 2, 3, 4, 5)
+    #     rectangle.update(6, 7, 8, 9, 10)
+    #     self.assertEqual(rectangle.id, 6)
+    #     self.assertEqual(rectangle.width, 7)
+    #     self.assertEqual(rectangle.height, 8)
+    #     self.assertEqual(rectangle.x, 9)
+    #     self.assertEqual(rectangle.y, 10)
+
+    # def test_update_method_with_kwargs_id(self):
+    #     """
+    #     Test the update() method of Rectangle with id parameter passed as keyword argument.
+    #     """
+    #     rectangle = Rectangle(1, 2, 3, 4, 5)
+    #     rectangle.update(**{'id': 6})
+    #     self.assertEqual(rectangle.id, 6)
+    #     self.assertEqual(rectangle.width, 1)
+    #     self.assertEqual(rectangle.height, 2)
+    #     self.assertEqual(rectangle.x, 3)
+    #     self.assertEqual(rectangle.y, 4)
+
+    # def test_update_method_with_kwargs_id_and_width(self):
+    #     """
+    #     Test the update() method of Rectangle with id and width parameters passed as keyword arguments.
+    #     """
+    #     rectangle = Rectangle(1, 2, 3, 4, 5)
+    #     rectangle.update(**{'id': 6, 'width': 7})
+    #     self.assertEqual(rectangle.id, 6)
+    #     self.assertEqual(rectangle.width, 7)
+    #     self.assertEqual(rectangle.height, 2)
+    #     self.assertEqual(rectangle.x, 3)
+    #     self.assertEqual(rectangle.y, 4)
+
+    # def test_create_method_with_kwargs_id(self):
+    #     """
+    #     Test the create() method of Rectangle with id parameter passed as keyword argument.
+    #     """
+    #     rectangle = Rectangle.create(**{'id': 89})
+    #     self.assertEqual(rectangle.id, 89)
+    #     self.assertEqual(rectangle.width, 1)
+    #     self.assertEqual(rectangle.height, 1)
+    #     self.assertEqual(rectangle.x, 0)
+    #     self.assertEqual(rectangle.y, 0)
+
+    # def test_create_method_with_kwargs_id_and_width(self):
+    #     """
+    #     Test the create() method of Rectangle with id and width parameters passed as keyword arguments.
+    #     """
+    #     rectangle = Rectangle.create(**{'id': 89, 'width': 1})
+    #     self.assertEqual(rectangle.id, 89)
+    #     self.assertEqual(rectangle.width, 1)
+    #     self.assertEqual(rectangle.height, 1)
+    #     self.assertEqual(rectangle.x, 0)
+    #     self.assertEqual(rectangle.y, 0)
 
 
 if __name__ == '__main__':
