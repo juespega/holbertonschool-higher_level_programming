@@ -22,6 +22,41 @@ class TestBase(unittest.TestCase):
         # The object must have the custom ID (89)
         self.assertEqual(base.id, 89)
 
+    def test_to_json_string_none(self):
+        result = Base.to_json_string(None)
+        # The result should be an empty JSON string ("[]")
+        self.assertEqual(result, "[]")
+
+    def test_to_json_string_empty_list(self):
+        result = Base.to_json_string([])
+        # The result should be an empty JSON string ("[]")
+        self.assertEqual(result, "[]")
+
+    # def test_to_json_string_single_dict(self):
+    #     result = Base.to_json_string([{'id': 12}])
+    #     self.assertEqual(result, '[{"id": 12}]')  # El resultado debe ser una cadena JSON con el diccionario proporcionado
+
+    # def test_to_json_string_single_dict_as_string(self):
+    #     result = Base.to_json_string([{'id': 12}], returning_string=True)
+    #     self.assertEqual(result, '[{"id": 12}]')  # El resultado debe ser una cadena JSON con el diccionario proporcionado
+
+    # def test_from_json_string_none(self):
+    #     result = Base.from_json_string(None)
+    #     self.assertEqual(result, [])  # El resultado debe ser una lista vacía ([])
+
+    # def test_from_json_string_empty_list(self):
+    #     result = Base.from_json_string("[]")
+    #     self.assertEqual(result, [])  # El resultado debe ser una lista vacía ([])
+
+    # def test_from_json_string_single_dict(self):
+    #     result = Base.from_json_string('[{"id": 89}]')
+    #     self.assertEqual(result, [{'id': 89}])  # El resultado debe ser una lista con el diccionario proporcionado
+
+    # def test_from_json_string_single_dict_as_list(self):
+    #     result = Base.from_json_string('[{"id": 89}]', returning_list=True)
+    #     self.assertEqual(result, [{'id': 89}])  # El resultado debe ser una lista con el diccionario proporcionado
+
+
 
 if __name__ == '__main__':
     unittest.main()
