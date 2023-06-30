@@ -1,232 +1,124 @@
 import unittest
 from models.rectangle import Rectangle
+from unittest.mock import patch
+import io
+from io import StringIO
+
 
 class TestRectangle(unittest.TestCase):
-    def test_rectangle_with_width_and_height(self):
-        rectangle = Rectangle(1, 2)
-        # Check that the width is equal to 1
-        self.assertEqual(rectangle.width, 1)
-        # Check that the height is equal to 2
-        self.assertEqual(rectangle.height, 2)
-        # Check that the position x is equal to 0
-        self.assertEqual(rectangle.x, 0)
-        # Check that the position y is equal to 0
-        self.assertEqual(rectangle.y, 0)
 
-    def test_rectangle_with_width_height_and_x(self):
-        rectangle = Rectangle(1, 2, 3)
-        self.assertEqual(rectangle.width, 1)
-        self.assertEqual(rectangle.height, 2)
-        self.assertEqual(rectangle.x, 3)
-        self.assertEqual(rectangle.y, 0)
+    def test_rectangle_initialization(self):
+        rect = Rectangle(5, 10)
+        self.assertEqual(rect.width, 5)
+        self.assertEqual(rect.height, 10)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+        self.assertIsNotNone(rect.id)
 
-    def test_rectangle_with_width_height_x_and_y(self):
-        rectangle = Rectangle(1, 2, 3, 4)
-        self.assertEqual(rectangle.width, 1)
-        self.assertEqual(rectangle.height, 2)
-        self.assertEqual(rectangle.x, 3)
-        self.assertEqual(rectangle.y, 4)
-
-    def test_rectangle_with_width_height_x_y_and_id(self):
-        rectangle = Rectangle(1, 2, 3, 4, 5)
-        self.assertEqual(rectangle.width, 1)
-        self.assertEqual(rectangle.height, 2)
-        self.assertEqual(rectangle.x, 3)
-        self.assertEqual(rectangle.y, 4)
-        self.assertEqual(rectangle.id, 5)
-
-    def test_rectangle_with_invalid_width_str(self):
+    def test_rectangle_width_validation(self):
         with self.assertRaises(TypeError):
-            Rectangle("1", 2)
+            rect = Rectangle("invalid", 10)
+        with self.assertRaises(ValueError):
+            rect = Rectangle(0, 10)
+        with self.assertRaises(ValueError):
+            rect = Rectangle(-5, 10)
 
-    def test_rectangle_with_invalid_height_str(self):
+    def test_rectangle_height_validation(self):
         with self.assertRaises(TypeError):
-            Rectangle(1, "2")
+            rect = Rectangle(5, "invalid")
+        with self.assertRaises(ValueError):
+            rect = Rectangle(5, 0)
+        with self.assertRaises(ValueError):
+            rect = Rectangle(5, -10)
 
-    def test_rectangle_with_invalid_x_str(self):
+    def test_rectangle_x_validation(self):
         with self.assertRaises(TypeError):
-            Rectangle(1, 2, "3")
+            rect = Rectangle(5, 10, "invalid")
+        with self.assertRaises(ValueError):
+            rect = Rectangle(5, 10, -1)
 
-    def test_rectangle_with_invalid_y_str(self):
+    def test_rectangle_y_validation(self):
         with self.assertRaises(TypeError):
-            Rectangle(1, 2, 3, "4")
-    
-    def test_rectangle_with_invalid_width(self):
+            rect = Rectangle(5, 10, 0, "invalid")
         with self.assertRaises(ValueError):
-            Rectangle(-1, 2)
+            rect = Rectangle(5, 10, 0, -1)
 
-    def test_rectangle_with_invalid_height(self):
-        with self.assertRaises(ValueError):
-            Rectangle(1, -2)
+    def test_rectangle_area(self):
+        rect = Rectangle(4, 5)
+        self.assertEqual(rect.area(), 20)
+        rect.width = 10
+        rect.height = 3
+        self.assertEqual(rect.area(), 30)
 
-    def test_rectangle_with_invalid_x(self):
-        with self.assertRaises(ValueError):
-            Rectangle(1, 2, -3)
+    def test_rectangle_str(self):
+        rect = Rectangle(4, 5, 2, 3, 1)
+        expected_output = "[Rectangle] (1) 2/3 - 4/5"
+        self.assertEqual(str(rect), expected_output)
 
-    def test_rectangle_with_invalid_y(self):
-        with self.assertRaises(ValueError):
-            Rectangle(1, 2, 3, -4)
+    def test_display(self):
+        rect = Rectangle(4, 5, 2, 3, 1)
+        expected_output = "\n\n\n  ####\n  ####\n  ####\n  ####\n  ####\n"
+        with patch('sys.stdout', new=io.StringIO()) as fake_out:
+            rect.display()
+            self.assertEqual(fake_out.getvalue(), expected_output)
 
-    def test_rectangle_with_invalid_width_0_and_height(self):
-        with self.assertRaises(ValueError):
-            Rectangle(0, 2)
+    def test_display_one_arg(self):
+        r = Rectangle(5, 1, 2, 4, 7)
+        with self.assertRaises(TypeError):
+            r.display(1)
 
-    def test_rectangle_with_invalid_width_and_height_0(self):
-        with self.assertRaises(ValueError):
-            Rectangle(1, 0)
+    def test_rectangle_display_without_x_y(self):
+        rectangle = Rectangle(5, 3)
+        expected_output = "#####\n#####\n#####\n"
+        with unittest.mock.patch("sys.stdout", new_callable=StringIO) as mock_stdout:
+            rectangle.display()
+            self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    def test_area_calculation(self):
-        rectangle = Rectangle(3, 4)
-        area = rectangle.area()
-        # Check that the area calculation is correct
-        self.assertEqual(area, 12)
+    def test_rectangle_display_without_y(self):
+        rectangle = Rectangle(5, 3, 2)
+        expected_output = "  #####\n  #####\n  #####\n"
+        with unittest.mock.patch("sys.stdout", new_callable=StringIO) as mock_stdout:
+            rectangle.display()
+            self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    def test_str_method(self):
-        """
-        Test the __str__() method of Rectangle.
-        """
-        rectangle = Rectangle(1, 2, 3, 4, 5)
-        string_representation = str(rectangle)
-        expected_output = "[Rectangle] (5) 3/4 - 1/2"
-        self.assertEqual(string_representation, expected_output)
+    def test_rectangle_update_with_args(self):
+        rect = Rectangle(4, 5, 2, 3, 1)
+        rect.update(2, 6, 7, 1, 4)
+        self.assertEqual(rect.id, 2)
+        self.assertEqual(rect.width, 6)
+        self.assertEqual(rect.height, 7)
+        self.assertEqual(rect.x, 1)
+        self.assertEqual(rect.y, 4)
 
-    # def test_display_without_x_and_y(self):
-    #     """
-    #     Test the display() method of Rectangle without x and y offsets.
-    #     """
-    #     rectangle = Rectangle(2, 3)
-    #     expected_output = "##\n##\n##\n"
-    #     self.assertEqual(rectangle.display(), expected_output)
+    def test_rectangle_update_with_kwargs(self):
+        rect = Rectangle(4, 5, 2, 3, 1)
+        rect.update(id=2, width=6, height=7, x=1, y=4)
+        self.assertEqual(rect.id, 2)
+        self.assertEqual(rect.width, 6)
+        self.assertEqual(rect.height, 7)
+        self.assertEqual(rect.x, 1)
+        self.assertEqual(rect.y, 4)
 
-    # def test_display_without_y(self):
-    #     """
-    #     Test the display() method of Rectangle without y offset.
-    #     """
-    #     rectangle = Rectangle(2, 3, 1)
-    #     expected_output = " ##\n ##\n ##\n"
-    #     self.assertEqual(rectangle.display(), expected_output)
+    def test_rectangle_update_with_args_and_kwargs(self):
+        rect = Rectangle(4, 5, 2, 3, 1)
+        rect.update(2, width=6, height=7, y=4)
+        self.assertEqual(rect.id, 2)
+        self.assertEqual(rect.width, 6)
+        self.assertEqual(rect.height, 7)
+        self.assertEqual(rect.x, 2)
+        self.assertEqual(rect.y, 4)
 
-    # def test_display(self):
-    #     """
-    #     Test the display() method of Rectangle.
-    #     """
-    #     rectangle = Rectangle(2, 3, 1, 2)
-    #     expected_output = "\n\n ##\n ##\n ##\n"
-    #     self.assertEqual(rectangle.display(), expected_output)
-
-    # def test_to_dictionary(self):
-    #     """
-    #     Test the to_dictionary() method of Rectangle.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     expected_output = {'id': 5, 'width': 1, 'height': 2, 'x': 3, 'y': 4}
-    #     self.assertEqual(rectangle.to_dictionary(), expected_output)
-
-    # def test_update_method(self):
-    #     """
-    #     Test the update() method of Rectangle.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(6, 7, 8, 9, 10)
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 7)
-    #     self.assertEqual(rectangle.height, 8)
-    #     self.assertEqual(rectangle.x, 9)
-    #     self.assertEqual(rectangle.y, 10)
-
-    # def test_update_method_with_id_only(self):
-    #     """
-    #     Test the update() method of Rectangle with only the id parameter.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(6)
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 1)
-    #     self.assertEqual(rectangle.height, 2)
-    #     self.assertEqual(rectangle.x, 3)
-    #     self.assertEqual(rectangle.y, 4)
-
-    # def test_update_method_with_id_and_width(self):
-    #     """
-    #     Test the update() method of Rectangle with id and width parameters.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(6, 7)
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 7)
-    #     self.assertEqual(rectangle.height, 2)
-    #     self.assertEqual(rectangle.x, 3)
-    #     self.assertEqual(rectangle.y, 4)
-
-    # def test_update_method_with_id_width_and_height(self):
-    #     """
-    #     Test the update() method of Rectangle with id, width, and height parameters.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(6, 7, 8)
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 7)
-    #     self.assertEqual(rectangle.height, 8)
-    #     self.assertEqual(rectangle.x, 3)
-    #     self.assertEqual(rectangle.y, 4)
-
-    # def test_update_method_with_id_width_height_x_and_y(self):
-    #     """
-    #     Test the update() method of Rectangle with id, width, height, x, and y parameters.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(6, 7, 8, 9, 10)
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 7)
-    #     self.assertEqual(rectangle.height, 8)
-    #     self.assertEqual(rectangle.x, 9)
-    #     self.assertEqual(rectangle.y, 10)
-
-    # def test_update_method_with_kwargs_id(self):
-    #     """
-    #     Test the update() method of Rectangle with id parameter passed as keyword argument.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(**{'id': 6})
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 1)
-    #     self.assertEqual(rectangle.height, 2)
-    #     self.assertEqual(rectangle.x, 3)
-    #     self.assertEqual(rectangle.y, 4)
-
-    # def test_update_method_with_kwargs_id_and_width(self):
-    #     """
-    #     Test the update() method of Rectangle with id and width parameters passed as keyword arguments.
-    #     """
-    #     rectangle = Rectangle(1, 2, 3, 4, 5)
-    #     rectangle.update(**{'id': 6, 'width': 7})
-    #     self.assertEqual(rectangle.id, 6)
-    #     self.assertEqual(rectangle.width, 7)
-    #     self.assertEqual(rectangle.height, 2)
-    #     self.assertEqual(rectangle.x, 3)
-    #     self.assertEqual(rectangle.y, 4)
-
-    # def test_create_method_with_kwargs_id(self):
-    #     """
-    #     Test the create() method of Rectangle with id parameter passed as keyword argument.
-    #     """
-    #     rectangle = Rectangle.create(**{'id': 89})
-    #     self.assertEqual(rectangle.id, 89)
-    #     self.assertEqual(rectangle.width, 1)
-    #     self.assertEqual(rectangle.height, 1)
-    #     self.assertEqual(rectangle.x, 0)
-    #     self.assertEqual(rectangle.y, 0)
-
-    # def test_create_method_with_kwargs_id_and_width(self):
-    #     """
-    #     Test the create() method of Rectangle with id and width parameters passed as keyword arguments.
-    #     """
-    #     rectangle = Rectangle.create(**{'id': 89, 'width': 1})
-    #     self.assertEqual(rectangle.id, 89)
-    #     self.assertEqual(rectangle.width, 1)
-    #     self.assertEqual(rectangle.height, 1)
-    #     self.assertEqual(rectangle.x, 0)
-    #     self.assertEqual(rectangle.y, 0)
+    def test_to_dictionary(self):
+        rect = Rectangle(5, 10, 2, 3, 1)
+        rect_dict = rect.to_dictionary()
+        expected_dict = {
+            "x": 2,
+            "y": 3,
+            "id": 1,
+            "height": 10,
+            "width": 5
+        }
+        self.assertDictEqual(rect_dict, expected_dict)
 
 
 if __name__ == '__main__':
