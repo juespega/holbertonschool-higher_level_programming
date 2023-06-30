@@ -1,97 +1,64 @@
 #!/usr/bin/python3
-"""
-Crate a Square class inheriting from the Rectangle class
-"""
-# Import the Rectangle class from the "rectangle" module
+"""class Square import class Rectangle"""
 from models.rectangle import Rectangle
 
 
+"""Create class Square"""
+
+
 class Square(Rectangle):
-    """
-    This class represents a square and inherits from the
-    Rectangle class.
-    """
+    """Create constructor for square"""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """
-        Initializes a Square object.
-
-        Args:
-            size (int): The size of the square.
-            x (int, optional): The x-coordinate of the square's position.
-            Defaults to 0.
-            y (int, optional): The y-coordinate of the square's position.
-            Defaults to 0.
-            id (int, optional): The ID of the square. Defaults to None.
-        """
         super().__init__(size, size, x, y, id)
 
+    """print constructor"""
+
+    def __str__(self):
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+
+    """Getter for square"""
     @property
     def size(self):
-        """
-        Getter for the size attribute.
-
-        Returns:
-            int: The size of the square.
-        """
         return self.width
 
+    """setter for square"""
     @size.setter
     def size(self, value):
-        """
-        Setter for the size attribute.
-
-        Args:
-            value (int): The size value to set.
-
-        Raises:
-            ValueError: If the size value is not greater than 0.
-            TypeError: If the size value is not an integer.
-        """
         self.width = value
         self.height = value
 
+    """Adding update function with arguments"""
+
     def update(self, *args, **kwargs):
-        """
-        Updates the attributes of the Square object.
+        """print dimensions of the print rectangle"""
+        if len(args) > 0:
+            self.id = args[0]
+        if len(args) > 1:
+            self.size = args[1]
+        if len(args) > 2:
+            self.x = args[2]
+        if len(args) > 3:
+            self.y = args[3]
 
-        Args:
-            *args: List of arguments in the following order:
-            [id, size, x, y]
-            **kwargs: Keyworded arguments where each key represents an
-            attribute name.
-
-        Raises:
-            ValueError: If a size value is not greater than 0.
-            TypeError: If a size value is not an integer.
-        """
-        if args and len(args) > 0:
-            attr_names = ["id", "size", "x", "y"]
-            for i, arg in enumerate(args):
-                setattr(self, attr_names[i], arg)
-        else:
+        if len(args) == 0 or len(kwargs) > 0:
             for key, value in kwargs.items():
-                setattr(self, key, value)
+                if key == 'id':
+                    self.id = value
+                elif key == 'size':
+                    self.size = value
+                elif key == 'x':
+                    self.x = value
+                elif key == 'y':
+                    self.y = value
 
-    def __str__(self):
-        """
-        Returns a string representation of the Square instance.
-
-        Returns:
-            str: The string representation of the Square instance.
-        """
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+    """adding dictionary in the square"""
 
     def to_dictionary(self):
-        """
-        Returns a dictionary representation of the Square.
-
-        Returns:
-            dict: The dictionary representation of the Square.
-        """
+        """create dictionary"""
         return {
             'id': self.id,
-            'size': self.width,
             'x': self.x,
+            'size': self.size,
             'y': self.y
         }
